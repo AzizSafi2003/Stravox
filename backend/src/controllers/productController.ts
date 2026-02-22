@@ -82,6 +82,14 @@ export const updateProduct = async (req: Request, res: Response) => {
     const { id } = req.params;
     const { title, description, imageUrl } = req.body;
 
+    if (!title || !description || !imageUrl) {
+      res.status(400).json({
+        error:
+          "Please provide all required information: title, description, and image.",
+      });
+      return;
+    }
+
     // Check if product exists and belongs to user
     const existingProduct = await queries.getProductById(id as string);
     if (!existingProduct) {

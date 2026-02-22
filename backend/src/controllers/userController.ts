@@ -1,19 +1,24 @@
 import type { Request, Response } from "express";
 import * as queries from "../db/queries";
-import { getAuth } from "@clerk/express";
+import { clerkClient, getAuth } from "@clerk/express";
 
 export async function syncUser(req: Request, res: Response) {
   try {
     const { userId } = getAuth(req);
     if (!userId) return res.status(401).json({ error: "Unauthorized!" });
 
-    const { email, name, imageUrl } = req.body;
+    const clerkUser = await clerkClient.users.getUser(userId);
+    const email = clerkUser.emailAddresses[0]?.emailAddress;
 
-    if (!email || !name || !imageUrl) {
-      return res.status(400).json({
-        error:
-          "Please provide all required information: email, name, and profile image.",
-      });
+    // Handle empty name case
+    const rawName =
+      `${clerkUser.firstName ?? ""} ${clerkUser.lastName ?? ""}`.trim();
+    const name = rawName || email || "Anonymous"; // Fallback chain
+
+    const imageUrl = clerkUser.imageUrl;
+
+    if (!email) {
+      return res.status(400).json({ error: "User email not found in Clerk" });
     }
 
     const user = await queries.upsertUser({
