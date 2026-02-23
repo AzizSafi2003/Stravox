@@ -2,5 +2,5 @@
   "editor.formatOnSave": true,
   "files.autoSave": "afterDelay",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "cSpell.words": ["Stravox"]
+  "cSpell.words": ["daisyui", "lofi", "nord", "Stravox", "synthwave"]
 }
