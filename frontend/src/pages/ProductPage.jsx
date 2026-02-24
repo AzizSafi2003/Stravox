@@ -27,7 +27,21 @@ function ProductPage() {
 
   if (isLoading) return <LoadingSpinner />;
 
-  if (error || !product) {
+  if (error) {
+    return (
+      <div className="card bg-base-300 max-w-md mx-auto">
+        <div className="card-body items-center text-center">
+          <h2 className="card-title text-error">Failed to load product</h2>
+          <p className="text-sm text-base-content/60">{error.message}</p>
+          <Link to="/" className="btn btn-primary btn-sm">
+            Go Home
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  if (!product) {
     return (
       <div className="card bg-base-300 max-w-md mx-auto">
         <div className="card-body items-center text-center">

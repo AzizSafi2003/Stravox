@@ -11,14 +11,29 @@ import {
 
 const ProfilePage = () => {
   const navigate = useNavigate();
-  const { data: products, isLoading } = useMyProducts();
+  const { data: products, isLoading, error } = useMyProducts();
   const deleteProduct = useDeleteProduct();
+  const [deletingId, setDeletingId] = useState(null);
 
   const handleDelete = (id) => {
-    if (confirm("Delete this product?")) deleteProduct.mutate(id);
+    if (confirm("Delete this product?")) {
+      setDeletingId(id);
+      deleteProduct.mutate(id, { onSettled: () => setDeletingId(null) });
+    }
   };
 
   if (isLoading) return <LoadingSpinner />;
+
+  if (error) {
+    return (
+      <div className="card bg-base-300 max-w-md mx-auto">
+        <div className="card-body items-center text-center">
+          <h2 className="card-title text-error">Failed to load products</h2>
+          <p className="text-sm text-base-content/60">{error.message}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -86,7 +101,7 @@ const ProfilePage = () => {
                   <button
                     onClick={() => handleDelete(product.id)}
                     className="btn btn-ghost btn-xs text-error gap-1"
-                    disabled={deleteProduct.isPending}
+                    disabled={deletingId === product.id}
                   >
                     <Trash2Icon className="size-3" /> Delete
                   </button>
