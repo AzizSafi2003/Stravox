@@ -42,6 +42,7 @@ function CreatePage() {
               <TypeIcon className="size-4 text-base-content/50" />
               <input
                 type="text"
+                aria-label="Product Title"
                 placeholder="Product Title"
                 className="grow"
                 value={formData.title}
@@ -57,6 +58,7 @@ function CreatePage() {
               <ImageIcon className="size-4 text-base-content/50" />
               <input
                 type="url"
+                aria-label="Product Image"
                 placeholder="Image URL"
                 className="grow"
                 value={formData.imageUrl}
@@ -86,6 +88,7 @@ function CreatePage() {
                 <textarea
                   placeholder="Description"
                   className="grow bg-transparent resize-none focus:outline-none min-h-24"
+                  aria-label="Product Description"
                   value={formData.description}
                   onChange={(e) =>
                     setFormData({ ...formData, description: e.target.value })
