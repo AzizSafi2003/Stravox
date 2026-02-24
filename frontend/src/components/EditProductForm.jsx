@@ -40,8 +40,8 @@ function EditProductForm({ product, isPending, isError, onSubmit }) {
               <TypeIcon className="size-4 text-base-content/50" />
               <input
                 type="text"
-                placeholder="Product Title"
-                aria-label="Product Input"
+                placeholder="Product title"
+                aria-label="Product Title"
                 className="grow"
                 value={formData.title}
                 onChange={(e) =>
@@ -98,7 +98,7 @@ function EditProductForm({ product, isPending, isError, onSubmit }) {
 
             {isError && (
               <div role="alert" className="alert alert-error alert-sm">
-                <span>Failed to update. Tyr again.</span>
+                <span>Failed to update. Try again.</span>
               </div>
             )}
 
