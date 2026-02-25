@@ -35,14 +35,15 @@ app.use("/api/products", productRoutes);
 app.use("/api/comments", commentRoutes);
 
 if (ENV.NODE_ENV === "production") {
-  const __dirname = path.resolve();
+  const frontendDistPath = path.resolve(__dirname, "../../frontend/dist");
 
   // serve static files from frontend/dist:
-  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+  app.use(express.static(frontendDistPath));
 
   /* Handle SPA routing - send all non-API routes to index.html - react app: */
-  app.get("/{*any}", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+  app.get("/{*any}", (req, res, next) => {
+    if (req.path.startsWith("/api")) return next();
+    res.sendFile(path.join(frontendDistPath, "index.html"));
   });
 }
 
