@@ -42,7 +42,7 @@ if (ENV.NODE_ENV === "production") {
 
   /* Handle SPA routing - send all non-API routes to index.html - react app: */
   app.get("/{*any}", (req, res, next) => {
-    if (req.path.startsWith("/api")) return next();
+    if (req.path === "/api" || req.path.startsWith("/api/")) return next();
     res.sendFile(path.join(frontendDistPath, "index.html"));
   });
 }
