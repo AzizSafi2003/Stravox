@@ -5,7 +5,7 @@ import {
   UserButton,
   useAuth,
 } from "@clerk/clerk-react";
-import { PlusIcon, ShoppingCart, UserIcon } from "lucide-react";
+import { PlusIcon, ShoppingCart, User, UserIcon } from "lucide-react";
 import ThemeSelector from "./ThemeSelector";
 
 function Navbar() {
@@ -32,11 +32,15 @@ function Navbar() {
                 <PlusIcon className="size-4" />
                 <span className="hidden sm:inline">New Product</span>
               </Link>
-              <Link to="/profile" className="btn btn-ghost btn-sm gap-1">
-                <UserIcon className="size-4" />
-                <span className="hidden sm:inline">Profile</span>
-              </Link>
-              <UserButton />
+              <UserButton>
+                <UserButton.MenuItems>
+                  <UserButton.Link
+                    label="Profile"
+                    labelIcon={<User className="size-4" />}
+                    href="/profile"
+                  />
+                </UserButton.MenuItems>
+              </UserButton>
             </>
           ) : (
             <>
