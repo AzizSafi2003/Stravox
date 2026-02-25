@@ -19,20 +19,20 @@ Now in this project I didn't added the payment methods this feature is up to you
 
 ## 📦 Getting Started
 
-1️⃣ Install Dependencies
+1) Install Dependencies
 
-# Under both folder frontend and backend run:
+Under both folder frontend and backend run:
 
-npm install
+2) npm install
 
-# or even better in the root package.json file I've prepared the build for you so you can run:
+Or even better in the root package.json file I've prepared the build for you so you can run:
 
-npm run build
+3) npm run build
 
-# and for starting the backend and frontend at the same time under one url that is localhost:3000 you can run:
+And for starting the backend and frontend at the same time under one url that is localhost:3000 you can run:
 
-npm start
+4) npm start
 
-# keep in mind run `npm start` after you build the project using `npm run build`.
+Keep in mind run `npm start` after you build the project using `npm run build`.
 
-Good Luck!
+5) Good Luck!
