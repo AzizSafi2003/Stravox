@@ -10,6 +10,7 @@ function EditProductPage() {
   const navigate = useNavigate();
 
   const { data: product, isLoading, error } = useProduct(id);
+  const updateProduct = useUpdateProduct();
 
   if (error) {
     return (
@@ -21,7 +22,6 @@ function EditProductPage() {
       </div>
     );
   }
-  const updateProduct = useUpdateProduct();
 
   if (isLoading || !isAuthLoaded) return <LoaderSpinner />;
 
