@@ -8,6 +8,7 @@ import {
   EditIcon,
   Trash2Icon,
 } from "lucide-react";
+import { useState } from "react";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
